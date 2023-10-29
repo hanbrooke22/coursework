@@ -9,6 +9,7 @@ typedef struct {
 	int steps;
 } FITNESS_DATA;
 
+// Define any additional variables here
 
 
 
@@ -22,7 +23,8 @@ void tokeniseRecord(const char *input, const char *delimiter,
     
     // Tokenize the copied string
     char *token = strtok(inputCopy, delimiter);
-    if (token != NULL) {        strcpy(date, token);
+    if (token != NULL) {        
+        strcpy(date, token);
     }
     
     token = strtok(NULL, delimiter);
@@ -43,5 +45,40 @@ void tokeniseRecord(const char *input, const char *delimiter,
 // Complete the main function
 int main() {
 
+    char* fileName = "FitnessData_2023.csv";
+    FILE *file = fopen(fileName, "r");
+    int count = 0, i = 0;
 
+    char array[1000]; 
+
+    while(fgets(array, 1000, file)){
+        count = count + 1; 
+    }
+    fclose(file);
+    
+    printf("Number of records in file: %d\n", count);
+
+    
+    char record[21] = "2023-09-01,07:30,300";
+    char date[11];
+    char time[6];
+    char steps[10]; 
+
+    int stepsint;
+    
+    tokeniseRecord(record, ",", date, time, steps);
+    
+    printf("Date: %s\n", date);
+    printf("Time: %s\n", time);
+    printf("Steps: %s\n", steps);
+
+    // Convert the steps string to an integer
+    stepsint = atoi(steps);
+    printf("Steps as an integer: %d\n", stepsint);
+    
+    for(i = 0; i <= 3; i++){
+        printf("%d,%d,%d", date[i], time[i], steps[i]);
+    }
+
+return 0; 
 }
