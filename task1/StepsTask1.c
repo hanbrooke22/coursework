@@ -54,7 +54,7 @@ int main() {
 
     int j = 0;
     while(i <= count){ 
-        char record[21] = "2023-09-01,07:30,300";
+        char record[21] = ; 
         char date[11];
         char time[6];
         char steps[10]; 
